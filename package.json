@@ -1,0 +1,12 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "description": "a mini project to practice using parcel , micro and react apollo",
+  "main": "index.js",
+  "license": "JAMIE LICENCE",
+  "private": true,
+  "workspaces": [
+    "frontEnd",
+    "backEnd"
+  ]
+}
