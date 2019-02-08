@@ -28,24 +28,27 @@ const Schedule = () => {
       .data(fakeData)
       .enter()
       .append("div")
-      .style("width", value => value.rating * 2 + "px")
-      .text(value => value.event + value.activity);
-
-    d3.select(".timeSheet")
-      .selectAll("span")
-      .data(fakeData)
-      .enter()
-      .append("span")
-      .style("width", `80px`)
-      .style("height", `30px`)
-      .style("background-color", "grey")
-      .text(value => value.time);
+      .style("width", value => value.rating * 40 + "px")
+      .style("background-color", "white")
+      .text(value => `${value.event} ${value.activity}`);
   });
 
   return (
-    <div>
+    <div className="schedule">
       <h2>Schedule for this day</h2>
       <div className="timeSheet"> </div>
+      <style jsx>{`
+        .schedule {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: top;
+          background-color: grey;
+          height: 80%;
+          width: 80%;
+          margin-top: 20px;
+        }
+      `}</style>
     </div>
   );
 };

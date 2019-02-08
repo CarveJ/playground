@@ -13,7 +13,7 @@ const routes = [
         component: Record
       },
       {
-        path: "/activitiesList",
+        path: "/activities",
         exact: true,
         component: Activities
       },

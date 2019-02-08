@@ -33,13 +33,28 @@ const Record = () => {
           {renderOptions()}
         </select>
       </div>
+
       <div className="startStop">
         <button onClick={() => handleClick("start")}>Start</button>
         <button onClick={() => handleClick("stop")}>Stop</button>
-        <div>
-          <button onClick={() => reset()}>Reset</button>
-        </div>
+        <button onClick={() => reset()}>Reset</button>
       </div>
+      <style jsx>{`
+        .record {
+          display: flex;
+          background-color: #f2f2f2;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 80%;
+          width: 80%;
+          margin-top: 20px;
+        }
+
+        .record > div {
+          margin: 20px;
+        }
+      `}</style>
     </div>
   );
 };

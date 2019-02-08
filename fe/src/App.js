@@ -5,15 +5,47 @@ import ColorContext from "./contexts/color";
 
 const App = ({ route }) => (
   <ColorContext.Provider value={"orange"}>
-    <h2>Links are here baby</h2>
+    <div className="app-wrapper">
+      <h2>Links are here baby</h2>
 
-    <div>
-      <Link to="/record"> Record </Link>
-      <Link to="/activities"> Activities List </Link>
-      <Link to="/schedule"> Schedule </Link>
+      <div className="theLinks">
+        <Link className="link" to="/record">
+          Record
+        </Link>
+        <Link className="link" to="/activities">
+          Activities List
+        </Link>
+        <Link className="link" to="/schedule">
+          Schedule
+        </Link>
+      </div>
+
+      {renderRoutes(route.routes)}
+      <style jsx>{`
+        .app-wrapper {
+          height: 100vh;
+          width: 100vw;
+          background-color: lightblue;
+          display: flex;
+          flex-direction: column;
+          justify-content: top;
+          align-items: center;
+        }
+
+        .theLinks {
+          background-color: pink;
+          display: flex;
+          justify-content: space-between;
+          width: 30%;
+        }
+
+        .link {
+          margin: 1px;
+          padding: 1px;
+          font-size: 30px;
+        }
+      `}</style>
     </div>
-
-    {renderRoutes(route.routes)}
   </ColorContext.Provider>
 );
 
