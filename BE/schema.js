@@ -1,44 +1,60 @@
-const { gql } = require("apollo-server");
-const { GraphQLDate, GraphQLTime } = require("graphql-iso-date");
+const { gql } = require("apollo-server-micro");
 
 // GraphQLDate & GraphQLTime are Custom Scalars that are UTC strings
 
 const typeDefs = gql`
+  scalar GraphQLDate
+  scalar GraphQLTime
 
   type Query {
-    activites(userId: String!): [Activity!]
-    timeSheet(userId: String!, day:GraphQLDate!): [TimeEvent!]
+    activities(userId: String!): [Activity!]
+    timeSheet(userId: String!, day: GraphQLDate!): [TimeEvent!]
   }
 
   type Mutation {
-      addActivity(userId: String!, activity: Activity!): ServerResponse
-      editActivity(userId: String!, activity: Activity!): ServerResponse 
-      addTimeEvent(userId: String! , timeEvent: TimeEvent!, day:GraphQLDate!): Server Response
+    addActivity(userId: String!, activity: ActivityInput!): ServerResponse
+    editActivity(userId: String!, activity: ActivityInput!): ServerResponse
+    addTimeEvent(
+      userId: String!
+      timeEvent: TimeEventInput!
+      day: GraphQLDate!
+    ): ServerResponse
   }
 
-  union Mutate = Activity | TimeEvent
-  
+  input ActivityInput {
+    name: String!
+    value: Float!
+  }
+
+  input TimeEventInput {
+    event: StartEnd!
+    activity: String!
+    time: GraphQLTime!
+  }
+
   type ServerResponse {
-      success:Boolean!
-      message: String,
-      request: Mutate
+    success: Boolean!
+    message: String
+    request: Activity
   }
 
   type Activity {
-      name: Float!,
-      value: Float!
+    name: String!
+    value: Float!
   }
 
   type TimeEvent {
     event: StartEnd!
-    activity: Activity! 
+    activity: String!
     time: GraphQLTime!
   }
 
   enum StartEnd {
-      start 
-      end 
-  }  
+    start
+    end
+  }
+
+  union Mutate = Activity | TimeEvent
 `;
 
 module.exports = typeDefs;
