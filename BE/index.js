@@ -14,6 +14,7 @@ const graphQlHandler = new ApolloServer({
   })
 }).createHandler({ path: "/q" });
 
+const check = (req, res) => `X GON GIVE IT TO YA`;
 module.exports = router(
   get("/", check),
   get("/q", graphQlHandler),
